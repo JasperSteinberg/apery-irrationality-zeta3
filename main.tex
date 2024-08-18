@@ -1,0 +1,241 @@
+\documentclass{beamer}
+
+\usepackage{beamerthemesplit}
+%\usepackage[dvips]{color}
+%\usepackage{graphicx}
+\usepackage{amsmath,amssymb,euscript,amsthm,amsfonts}
+\usepackage{amsthm,amsfonts,amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{bbm}
+%\usepackage{autobreak}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{dsfont}
+\usepackage{tikz,tikz-cd}
+
+
+\usetheme{AnnArbor}
+\newcommand{\T}{\mathbb{{T}}}
+\newcommand{\N}{\mathbb{{N}}}
+\newcommand{\spacer}{\rule[0mm]{0mm}{0mm}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Hi}{{\mathcal{H}}^\infty}
+\newcommand{\Ht}{{\mathcal{H}}^2}
+\newcommand{\Hp}{{\mathcal{H}}^p}
+\newcommand{\Ho}{{\mathcal{H}}^1}
+\newcommand*\smat[4]{\begin{smallmatrix}#1&#2\\#3&#4\end{smallmatrix}}
+\newcommand*\pmat[4]{\begin{pmatrix}#1&#2\\#3&#4\end{pmatrix}}
+
+
+
+\title[Irrationality of $\zeta(3)$]{Apéry's proof of the irrationality of $\zeta(3)$}
+\author{Jasper Steinberg}
+\institute[NTNU]{NTNU}
+%\date{}
+\date{13 June 2022}
+\begin{document}
+\begin{frame}
+\begin{center}
+{Exam-presentation}
+\end{center}
+\titlepage
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 0
+\begin{frame}{Introduction}{}
+Euler showed 
+\begin{align*}
+    \zeta(2k) = (-1)^{k-1}\frac{(2\pi)^{2k}}{2(2k)!}B_{2k}.
+\end{align*}
+\pause
+What about $\zeta(2k+1)$?
+\pause
+So far only we only know $\zeta(3)$ is irrational. 
+
+\end{frame}
+\begin{frame}{Introduction}{}
+
+\begin{quote}
+
+Each step he wrote on the blackboard appeared to be a remarkable identity that his audience considered unlikely to be true. When someone asked him "where do these identities come from?" he replied "They grow in my garden." Obviously this did not boost anyone's confidence. 
+    
+\end{quote}
+
+
+\end{frame}
+
+
+
+\begin{frame}{Irrationality criterion}{}
+
+If there exists $\delta>0$, $p_n, q_n \in \Z$ such that $\frac{p_n}{q_n} \neq \beta$ and 
+\begin{align*}
+    \left|\beta - \frac{p_n}{q_n}\right| < \frac{1}{q_n^{1+\delta}}
+\end{align*}
+for $n\in \N$, then $\beta$ is irrational. 
+
+
+\end{frame}
+
+
+
+\begin{frame}{Finding a new sequence}{}
+
+We need to find a better sequence. Motivated by a derivation of a series representation for $\zeta(3)$, we define
+\begin{align*}
+    c_{n,k} =
+    \sum_{m=1}^n\frac{1}{m^3} + \sum_{m=1}^k \frac{(-1)^{m-1}}{2m^3\binom{n}{m}\binom{n+m}{m}}.
+\end{align*}
+\end{frame}
+
+
+\begin{frame}{Why $c_{n,k}$ is not good enough}{}
+Before checking irrationality, we need to make the sequence a fraction of integers,\pause
+%The following result is important since we need integer sequences,
+\begin{align*}
+    2c_{n,k}\binom{n+k}{n} [1,\dots, n]^3 \in \Z.
+\end{align*}
+\pause
+How is the denominator relative to convergence? 
+
+\pause
+\begin{align*}
+    |\zeta(3)-c_{n,n}| \approx \frac{1}{4^n} 
+\end{align*}
+\pause
+\begin{align*}
+    \frac{1}{q_n^{1+\delta}} \approx \frac{1}{(e^{3n}4^n)^{1+\delta}}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Transforming the sequence}{}
+
+How to speed up the convergence without destroying denominator? 
+\pause
+Apéry magically dose 5 transformations to the sequences
+\begin{align*}
+    & d_{n,k} = \binom{n+k}{k}c_{n,k}
+    &e_{n,k} = \binom{n+k}{k}. 
+\end{align*}
+
+\pause
+\begin{align*}
+    &a_{n,k} = \sum_{k_2=0}^k \binom{k}{k_2}\binom{n}{k_2}\sum_{k_1=0}^{k_2} \binom{k_2}{k_1}\binom{n}{k_1}\binom{2n-k_1}{n}c_{n,n-k_1}
+    \\&
+    b_{n,k} = \sum_{k_2=0}^k \binom{k}{k_2}\binom{n}{k_2}\sum_{k_1=0}^{k_2} \binom{k_2}{k_1}\binom{n}{k_1}\binom{2n-k_1}{n}.
+\end{align*}
+\end{frame}
+
+\begin{frame}{Transforming the sequence}{}
+What in the world did we achive?
+\pause
+One can show that we preserved both
+\begin{align*}
+   &\lim_{n\rightarrow\infty}\frac{a_{n,k}}{b_{n,k}} = \zeta(3),
+    & 2[1,\dots, n]^3 a_{n,k} \in \Z.
+\end{align*}
+\pause
+The key is that our sequence now has much better convergence relative to denominator.  
+\end{frame}
+\begin{frame}{Recurrence relation}{}
+
+Set 
+$
+    &\{a_n\} = \{a_{n,n}\}, &\{b_n\} = \{b_{n,n}\}
+$, then both sequences satisfy
+\begin{align*}
+    & n^3 u_n + (n-1)^3 u_{n-2} = (34n^3 - 51n^2 + 27n - 5)u_{n-1},
+    \\& 
+    2 \leq n.
+\end{align*}
+\pause
+\begin{quote}
+    We were quite unable to proove that the sequences  did satisfy the recurrence (Apéry rather tartly pointed out to me in Helsinki that he regarded this more a compliment than a criticism of his method).
+\end{quote}
+\end{frame}
+
+\begin{frame}{Recurrence relation}{}
+
+This means that we have
+\begin{align*}
+    &n^3 a_n + (n-1)^3 a_{n-2} = P(n)a_{n-1}
+    \\&
+    n^3 b_n + (n-1)^3 b_{n-2} = P(n)b_{n-1}
+\end{align*}
+\pause
+Collapse recurrences to get 
+\begin{align*}
+    n^3(a_nb_{n-1} - a_{n-1}b_n) = (n-1)^3(a_{n-1}b_{n-2} - a_{n-2}b_{n-1}).
+\end{align*}
+\pause
+We can now iterate down to initial values
+\begin{align*}
+    a_nb_{n-1} - a_{n-1}b_n = \frac{6}{n^3},
+\end{align*}
+which we use to estimate convergence. 
+
+\end{frame}
+\begin{frame}{Recurrence relation}{}
+To that end, set
+\begin{align*}
+    &x_n = \zeta(3) - \frac{a_n}{b_n},
+    \\&
+    x_n - x_{n+1} = \frac{a_n b_{n+1} - b_n a_{n+1}}{b_n b_{n+1}} = \frac{6}{(n+1)^3b_n b_{n+1}}.
+\end{align*}
+\pause
+Now iterate:
+\begin{align*}
+    &\zeta(3) - \frac{a_n}{b_n} 
+    \\&= x_n - x_{n+1} + x_{n+1}
+    \\&= x_{n+1} + \frac{6}{(n+1)^3 b_n b_{n+1}}
+    \\& 
+    =\sum_{k=n+1}^\infty \frac{6}{k^3 b_k b_{k-1}} = O(b_n^{-2}).
+\end{align*}
+
+
+\end{frame}
+
+\begin{frame}{Estimate for $b_n$}{}
+
+Need estimate for $b_n$. 
+Asymptotically, the recurrence is 
+\begin{align*}
+    b_n - 34b_{n-1} + b_{n-2} = 0,
+\end{align*}
+
+with roots $(1\pm \sqrt{2})^4$. 
+\pause
+Thus with $\alpha = (1+\sqrt{2})^4$, we have 
+\begin{align*}
+    b_n = O(\alpha^n).
+\end{align*}
+
+\end{frame}
+\begin{frame}{Final touch}{}
+
+Recall, $a_n$ and $b_n$ are not quite integers, thus set
+\begin{align*}
+    &p_n = 2 [1,\dots, n]^3 a_n
+    &q_n = 2[1,\dots, n]^3 b_n. 
+\end{align*}
+\pause
+Effect: $p_n, q_n \in \Z$ and $q_n = O(\alpha^n e^{3n})$.
+\pause
+Finally choose $\delta = \frac{log\alpha - 3}{\log\alpha + 3}$, 
+\pause
+then 
+\begin{align*}
+    \left| \zeta(3) - \frac{p_n}{q_n} \right| = O(\alpha^{-2n}) = O(q_n^{-1+\delta})
+\end{align*}
+
+\end{frame}
+
+\end{document}
